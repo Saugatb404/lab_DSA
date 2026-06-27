@@ -1,3 +1,5 @@
+// the implementation of queue operations i.e enqueue and dequeue using stack 
+
 #include <iostream>
 
 using namespace std;
