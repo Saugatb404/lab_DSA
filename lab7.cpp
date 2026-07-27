@@ -30,28 +30,101 @@ void display(vector<node*>& v){
 
 }
 
-void insertion(int pos, vector<node*>& v){
+void insertion(int pos, vector<node*>& v) {
+
+    if (pos < 0 || pos > (int)v.size()) {
+        cout << "Invalid position" << endl;
+        return;
+    }
+
     int value;
-    cout<<"enter data in the node that is going to be inserted : \t  ";
-    cin>>value;
-    node* newNode = new node;
-    newNode -> data = value;
+    cout << "Enter data in the node that is going to be inserted : ";
+    cin >> value;
 
-    newNode->next = v[pos];  // assign the inserted nodes next pointer to its going to be  next node which is originally is at the position(pos)
-    v[pos-1]->next=newNode; //  assigning the prev node next pointer after which a new node is inserted as the node address of the newNode
-    //then new node is successfully inserted in the linked list 
-    v.insert(v.begin()+pos,newNode); // new node is  inserted in the vector
+    node* newNode = createNode(value);
 
-    cout<<"successfully inserted ..."<<endl;
+    
+    if (v.empty()) {
+        v.push_back(newNode);
+        cout << "Successfully inserted" << endl;
+        return;
+    }
+
+    //insert at beginning
+    if (pos == 0) {
+        newNode->next = v[0];
+        v.insert(v.begin(), newNode);
+        cout << "Successfully inserted" << endl;
+        return;
+    }
+
+    //insert at end
+    if (pos == (int)v.size()) {
+        v[pos - 1]->next = newNode;
+        v.push_back(newNode);
+        cout << "Successfully inserted" << endl;
+        return;
+    }
+
+    //insert in middle
+    newNode->next = v[pos];
+    v[pos - 1]->next = newNode;
+    v.insert(v.begin() + pos, newNode);
+
+    cout << "Successfully inserted" << endl;
 }
 
-void deletion(int pos , vector<node*>& v){
-    v[pos-1]->next = v[pos+1];
-    v.erase(v.begin()+pos);
-    cout<<"successfully deleted"<<endl;
+void deletion(int pos, vector<node*>& v) {
 
+    // Empty list
+    if (v.empty()) {
+        cout << "Deletion not possible. List is empty.\n";
+        return;
+    }
+
+    // Invalid position
+    if (pos < 0 || pos >= (int)v.size()) {
+        cout << "Deletion not possible. Invalid position.\n";
+        return;
+    }
+
+    // Only one node
+    if (v.size() == 1) {
+        delete v[0];
+        v.clear();
+        cout << "Successfully deleted.\n";
+        return;
+    }
+
+    // Delete first node
+    if (pos == 0) {
+        delete v[0];
+        v.erase(v.begin());
+
+        if (!v.empty())
+            v[0]->next = (v.size() > 1) ? v[1] : nullptr;
+
+        cout << "Successfully deleted.\n";
+        return;
+    }
+
+    // Delete last node
+    if (pos == (int)v.size() - 1) {
+        v[pos - 1]->next = nullptr;
+        delete v[pos];
+        v.erase(v.begin() + pos);
+
+        cout << "Successfully deleted.\n";
+        return;
+    }
+
+    // Delete middle node
+    v[pos - 1]->next = v[pos + 1];
+    delete v[pos];
+    v.erase(v.begin() + pos);
+
+    cout << "Successfully deleted.\n";
 }
-
 int main(){
     vector<node*> v;
     while(true){
