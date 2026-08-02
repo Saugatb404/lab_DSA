@@ -77,7 +77,7 @@ void insertion(int pos, vector<node*>& v) {
 void deletion(int pos, vector<node*>& v) {
 
     // Empty list
-    if (v.empty()) {
+   if (v.empty()) {
         cout << "Deletion not possible. List is empty.\n";
         return;
     }
