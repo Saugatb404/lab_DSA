@@ -40,7 +40,7 @@ void LinearSearch(vector<int>&v , int num){
 }
 
 
-// Binary search for the sorted int  O(nlogn) + O(logn) = O(nlogn)
+// Binary search for the sorted int  O(n^2) + O(logn) = O(n^2)
 void BinarySearch(vector<int>&v, int num)
 {
     InsertionSort(v);
