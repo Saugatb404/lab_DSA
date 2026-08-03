@@ -30,7 +30,7 @@ void InsertionSort(vector<int>&v){
 void LinearSearch(vector<int>&v , int num){  
     for(int i= 0 ; i< v.size() ; i++){
         if(v[i] == num){
-            cout<<"  "<<num<<" is found using Linear Search"<<endl;
+            cout<<"  "<<num<<" is found using Linear Search at position "<<i<<endl;
             return;
         }
     }
@@ -54,7 +54,7 @@ void BinarySearch(vector<int>&v, int num)
 
         if (v[mid] == num)
         {
-            cout<<"  "<< num << " is found using Binary Search in the sorted array" << endl;
+            cout<<"  "<< num << " is found using Binary Search in the sorted array at position " << i<< endl;
             return;
         }
 
