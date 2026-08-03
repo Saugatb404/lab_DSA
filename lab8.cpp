@@ -1,10 +1,33 @@
 #include<bits/stdc++.h>
 
 using namespace std;
+  
+// Insertion sort O(n^2)
+void InsertionSort(vector<int>&v){
+
+    for(int i = 1 ; i<v.size() ; i++){
+        int curr = v[i];
+        int j = i-1;
+        while( v[j] > curr && j>=0){
+            v[j+1] = v[j];
+            j--;
+        }
+        v[j+1] = curr;
+
+    }
+
+    cout<<"   after the insertion sorting the array of data is :"<<endl;
+    for(int x : v){
+        cout<<x<<" , ";
+    }
+    cout<<endl;
+    return;
+
+}
 
 
 // linear search  O(n)
-void LinearSearch(vector<int>v , int num){  
+void LinearSearch(vector<int>&v , int num){  
     for(int i= 0 ; i< v.size() ; i++){
         if(v[i] == num){
             cout<<"  "<<num<<" is found using Linear Search"<<endl;
@@ -18,9 +41,9 @@ void LinearSearch(vector<int>v , int num){
 
 
 // Binary search for the sorted int  O(nlogn) + O(logn) = O(nlogn)
-void BinarySearch(vector<int> v, int num)
+void BinarySearch(vector<int>&v, int num)
 {
-    sort(v.begin(), v.end()); // O(n log n)
+    InsertionSort(v);
 
     int low = 0;
     int high = v.size() - 1;
@@ -31,7 +54,7 @@ void BinarySearch(vector<int> v, int num)
 
         if (v[mid] == num)
         {
-            cout<<"  "<< num << " is found using Binary Search" << endl;
+            cout<<"  "<< num << " is found using Binary Search in the sorted array" << endl;
             return;
         }
 
